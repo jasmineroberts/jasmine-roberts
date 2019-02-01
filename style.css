@@ -16891,7 +16891,7 @@ body {
 
 a,
 a:visited {
-    color: #ffffff;
+    color: #cd9bcb;
     text-decoration: none;
 	outline: 0;
 }
@@ -16953,7 +16953,7 @@ h3,
 .menu-block .menu-section-title {
     font-family: "Kameron", Georgia, serif;
     font-size: 15px;
-	color: #ffffff;
+	color: #000000;
     line-height: 1.2em;
     font-family: gt-haptik;
     font-weight: 300;

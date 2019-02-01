@@ -27,7 +27,7 @@ function Player(x, y) {
   this.color = '#000000';
   
   this.x = x;
-  this.y = y - this.height;
+  this.y = y + this.height;
   this.velX = 0;
   this.speed = 6;
   this.friction = 1;
