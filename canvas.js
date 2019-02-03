@@ -76,7 +76,7 @@ function Player(x, y) {
   }
 }
 
-function Circle(id, x, y, velX, velY, color, radius) {
+function Circle(id, x, y, velX, velY, color, radius, flag) {
   var randNum = Math.random();
   this.id = id;
   this.x = x;
@@ -85,7 +85,7 @@ function Circle(id, x, y, velX, velY, color, radius) {
   this.velY = velY;
   this.originalColor = color;
   this.color = color;
-  this.radius = (randNum > 0.5 ) ? radius + 5 : radius -5;
+  this.radius = (flag <= 4) ? radius * 0.35 : radius + 5;
 
   this.update = function() {
 
@@ -120,15 +120,18 @@ function Circle(id, x, y, velX, velY, color, radius) {
       }
     }
   }
-
+  this.getRandomArbitrary = function(min, max) {
+    return Math.random() * (max - min) + min;
+  }
   this.draw = function() {
     ctx.beginPath();
-    if (randNum > 0.5) ctx.strokeStyle = '#010b0b1';
+    if (flag > 4) ctx.strokeStyle = '#010101';
     ctx.lineWidth = 1;
     ctx.fillStyle = this.color;
+    console.log(flag)
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    if (randNum < 0.5) ctx.fill();
-    if (randNum > 0.5) ctx.stroke();
+    if (flag <= 4) ctx.fill();
+    if (flag > 4) ctx.stroke();
     ctx.closePath();
   }
 }
@@ -169,25 +172,29 @@ function init() {
   player = new Player(100, canvas.height);
   console.log(player);
 
-  var numCircles = 7,
-      clearCircles = 8,
+  var numCircles = 5,
+      clearCircles = 10,
       colors = [
         '#cd9bcb',
         '#cd9bb2',
         '#b69bcd'
-      ];
+      ],
+      v = 0;
 
   for(var i=0; i < (numCircles + clearCircles); i++) {
 
     var velMax = 3,
         velMin = 1,
-        randRadius = Math.floor(Math.random() * 20) + 5,
+        randRadius = Math.floor(Math.random() * 17) + 5,
         randX = Math.random() * (canvas.width - randRadius * 2) + randRadius,
         randY = Math.random() * (canvas.height - randRadius * 2) + randRadius,
         randVelY = Math.ceil(Math.random() * velMax) + velMin,
         randVelX = Math.ceil(Math.random() * velMax) + velMin,
         randColor = colors[Math.floor(Math.random() * colors.length)];
 
+    /*if (i <= 4) {
+      randRadius = Math.floor(Math.random() * 5) + 1;
+    }*/
     // Make sure this new circle doesn't overlap an existing one (don't add to the cicles array if so, which will cause the generation loop to run again until the required number of circles have been created)
     for(var j=0; j < circles.length; j++) {
       if(utils.circleCollision({ x: randX, y: randY, radius: randRadius }, circles[j])) {
@@ -196,8 +203,8 @@ function init() {
         j = -1;
       }
     }
-
-    circles.push(new Circle(circles.length, randX, randY, randVelX, randVelY, randColor, randRadius));
+    circles.push(new Circle(circles.length, randX, randY, randVelX, randVelY, randColor, randRadius, v));
+    v++;
   }
 
   animate();
