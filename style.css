@@ -28,6 +28,12 @@ summary {
 }
 
 @font-face {
+  font-family: brown-light;
+  src: url(brown-light.ttf);
+}
+
+
+@font-face {
   font-family: gt-haptik-b;
   src: url(gt-haptik-bold-webfont.ttf);
 }
@@ -16891,7 +16897,7 @@ body {
 
 a,
 a:visited {
-    color: #cd9bcb;
+    color: #d4bab4;
     text-decoration: none;
 	outline: 0;
 }
@@ -16955,7 +16961,7 @@ h3,
     font-size: 15px;
 	color: #000000;
     line-height: 1.2em;
-    font-family: gt-haptik;
+    font-family: brown-light;
     font-weight: 300;
     font-style: normal;
     font-size: 21px;
