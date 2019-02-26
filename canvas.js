@@ -175,9 +175,9 @@ function init() {
   var numCircles = 5,
       clearCircles = 10,
       colors = [
-        '#c54da2',
-        '#d396c1',
-        '#c473ac'
+        '#d0bbb5',
+        '#d0bbb5',
+        '#d0bbb5'
       ],
       v = 0;
 
